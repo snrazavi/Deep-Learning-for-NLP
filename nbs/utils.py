@@ -19,14 +19,3 @@ def display_classification_result(sentence, label, label_idx):
             - label_idx: index of the predicted label in the label vocab.
     '''
     print(f"{label:8s}\x1b[{41 + 2 * label_idx}m" + sentence + "\x1b[m")
-    
-    
-
-def categorical_accuracy(preds, y):
-    """
-    Returns accuracy per batch, i.e. if you get 8/10 right, this returns 0.8, NOT 8
-    """
-    top_pred = preds.argmax(1, keepdim = True)
-    correct = top_pred.eq(y.view_as(top_pred)).sum()
-    acc = correct.float() / y.shape[0]
-    return acc
